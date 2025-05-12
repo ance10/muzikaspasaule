@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Pievienot instrumentu{% endblock %}
+{% block content %}
+
+<h2>Pievienot jaunu instrumentu</h2>
+
+<form method="POST" class="add-form">
+    <label for="name">Nosaukums:</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="price">Cena (€):</label>
+    <input type="number" step="0.01" name="price" id="price" required>
+
+    <label for="image">Attēla faila nosaukums (piem. gitara.jpg):</label>
+    <input type="text" name="image" id="image" required>
+
+    <label for="brand_id">Zīmols:</label>
+    <select name="brand_id" id="brand_id" required>
+        {% for brand in brands %}
+            <option value="{{ brand.id }}">{{ brand.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="type_id">Tips:</label>
+    <select name="type_id" id="type_id" required>
+        {% for type in types %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Saglabāt</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{product.name}} - MiniVeikals{% endblock %}
+{% block content %}
+
+
+<div class="products-show">
+    <div class="product-image">
+        <img src="{{ url_for('static', filename='images/products/' ~ product['image']) }}"
+             alt="{{ product['name'] }}">
+    </div>
+
+    <div class="content-card">
+        <div class="product-info">
+            <h2 class="product-title">{{ product["name"] }}</h2>
+            <p class="product-brand">Zīmols: <span>{{ product["brand"] }}</span></p>
+            <p class="product-type">Tips: <span>{{ product["type"] }}</span></p>
+            <p class="product-store">Pieejams veikalā: <span>{{ product["store"] }}</span></p>
+            <div class="product-price-big">
+                {{ "%.0f"|format(product["price"]) if product["price"] % 1 == 0 else "%.2f"|format(product["price"]) }} €
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('edit_instrument', product_id=product.id) }}" class="btn">✏️ Rediģēt</a>
+
+    <form method="POST" action="{{ url_for('delete_instrument', product_id=product.id) }}" onsubmit="return confirm('Vai tiešām dzēst šo instrumentu?');" style="display:inline;">
+        <button type="submit" class="btn" style="background-color: #d9534f;">🗑️ Dzēst</button>
+    </form>
+</div>
+{% endblock %}
