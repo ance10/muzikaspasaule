@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="lv">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="{{ body_class | default('') }}">
+    <header class="header-flex">
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+            <a href="{{ url_for('index') }}" class="header-title">Mūzikas Pasaule</a>
+        </div>
+        <nav class="header-nav">
+            <a href="/">Sākums</a>
+            <a href="/instrumenti">Instrumenti</a>
+            <a href="/par-mums">Par mums</a>
+        </nav>
+    </header>
+    
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; {{ 2025 }} MūzikasPasaule</p>
+    </footer>
+</body>
+
+</html>
